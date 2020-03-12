@@ -6,8 +6,8 @@ def main():
     daniel = turtle.Turtle()
 
     make_square(daniel)
-    
-    turtle.mainloop()
+
+    turtle.Screen().mainloop()
 
 
 def make_square(daniel):
