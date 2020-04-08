@@ -144,3 +144,7 @@ static
 .env
 venv
 env
+
+# 
+
+.vscode/
