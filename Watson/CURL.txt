@@ -1,5 +1,0 @@
-curl -X POST -u "apikey:bt9oSeXJ7pSSkJ7DCdNLuV6dXmLPpMWGczgII0CoKIZE" \
---header "Content-Type: text/plain;charset=utf-8" \
---header "Accept: application/json" \
---data-binary @profile.txt \
-"https://api.us-south.personality-insights.watson.cloud.ibm.com/instances/efb78c2a-1dcf-4f58-bd2d-7c1cbab4eb94/v3/profile?version=2017-10-13"
