@@ -1,5 +1,9 @@
 news_sites:
-    eluniversal:
-        url: http://www.eluniversal.com.co
-    elpais:
-        url: http://www.elpais.com
+  eluniversal:
+    url: http://www.eluniversal.com.co
+    queries:
+      home_page_article_links: '.image a'
+  elpais:
+    url: http://www.elpais.com/america
+    queries:
+      home_page_article_links: '.story_card h2 a'
