@@ -3,7 +3,11 @@ news_sites:
     url: http://www.eluniversal.com.co
     queries:
       home_page_article_links: '.image a'
+      article_body: '.detail'
+      article_title: '.headline span'
   elpais:
     url: http://www.elpais.com/america
     queries:
       home_page_article_links: '.story_card h2 a'
+      article_body: ''
+      article_title: ''
