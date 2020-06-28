@@ -27,8 +27,7 @@ def _news_scraper(news_site_uid):
 
         if article:
             logger.info('Article fetched!!')
-            articles.append(article)
-            break
+            articles.append(article)            
 
     _save_articles(news_site_uid, articles)
 
@@ -37,10 +36,11 @@ def _save_articles(news_site_uid, articles):
     now = datetime.datetime.now().strftime('%Y_%m_%d')
     out_file_name = '{news_site_uid}_{datetime}_articles.csv'.format(news_site_uid=news_site_uid,
                                                                      datetime=now)
+    
     csv_headers = list(filter(
         lambda property: not property.startswith('_'), dir(articles[0])))
 
-    with open(out_file_name, mode='w+') as f:
+    with open(out_file_name, mode='w+', encoding="utf-8") as f:
         writer = csv.writer(f)
         writer.writerow(csv_headers)
 
@@ -66,9 +66,9 @@ def _fetch_article(news_site_uid, host, link):
 
 
 def _build_link(host, link):
-    if is_well_formed_link.match(link):
+    if is_well_formed_link.match(link):        
         return link
-    elif is_root_path.match(link):
+    elif is_root_path.match(link):        
         return '{}{}'.format(host, link)
     else:
         return '{host}/{uri}'.format(host=host, uri=link)
