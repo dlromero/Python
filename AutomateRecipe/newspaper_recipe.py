@@ -2,8 +2,10 @@
 import argparse
 import hashlib
 import logging
-from urllib.parse import urlparse
+import nltk
 import pandas as pd
+from urllib.parse import urlparse
+from nltk.corpus import stopwords
 
 logging.basicConfig(level=logging.INFO)
 
@@ -12,14 +14,21 @@ logger = logging.getLogger(__name__)
 
 def main(filename):
     logger.info('Starting cleanning process')
+    # nltk.download('punkt')
+    # nltk.download('stopwords')
 
     df = _read_data(filename)
     newspapper_uid = _extract_newspaper_uid(filename)
+    stop_words = set(stopwords.words('spanish'))
+
     df = _add_newspaper_uid_columm(df, newspapper_uid)
     df = _extact_host(df)
     df = _fill_missing_titles(df)
     df = _generate_uids_rows(df)
     df = _remove_new_lines_from_body(df)
+
+    df = _count_token_words(df, 'title', stop_words)
+    df = _count_token_words(df, 'body', stop_words)
 
     return df
 
@@ -87,6 +96,22 @@ def _remove_new_lines_from_body(df):
                      )
     df['body'] = stripped_body
 
+    return df
+
+
+def _count_token_words(df, column, stop_words):
+    logger.info('Counting token words')
+
+    count_token_words = (df
+                         .dropna()
+                         .apply(lambda row: nltk.word_tokenize(row[column]), axis=1)
+                         .apply(lambda tokens: list(filter(lambda token: token.isalpha(), tokens)))
+                         .apply(lambda tokens: list(map(lambda token: token.lower(), tokens)))
+                         .apply(lambda word_list: list(filter(lambda word: word not in stop_words, word_list)))
+                         .apply(lambda valid_word_list: len(valid_word_list))
+                         )
+
+    df['n_tokens_{}'.format(column)] = count_token_words
     return df
 
 
