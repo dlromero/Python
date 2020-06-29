@@ -1,0 +1,20 @@
+news_sites:
+  eluniversal:
+    url: http://www.eluniversal.com.co
+    queries:
+      home_page_article_links: '.image a'
+      article_body: 'article'
+      article_title: '.headline span'
+  elpais:
+    url: http://www.elpais.com.co
+    queries:
+      home_page_article_links: '.article-details h2 a'
+      article_body: '.paragraph'
+      article_title: '.article-top div .title'
+  eltiempo:
+    url: https://www.eltiempo.com/
+    queries:
+      home_page_article_links: '.page-link'
+      article_body: '.modulos .contenido'
+      article_title: '.titulo-principal-bk h1'
+      
