@@ -4,7 +4,7 @@ import datetime
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-news_sites_uids = ['eluniversal']
+news_sites_uids = ['eluniversal','elpais','eltiempo']
 MAIN = 'main.py'
 TRFM = './transform'
 
@@ -23,8 +23,8 @@ def _extract():
         # subprocess.run(['find', '.', '-name', '{}*'.format(news_site_uid),
         #                 '-exec', 'mv', '{}', '../transform/{}_.csv'.format(news_site_uid), ';'], cwd='./extract')
         # WINDOWS
-        subprocess.run(['copy', r'[your_root_path]\extract\*.csv',
-                        r'[your_root_path]\transform'], shell=True)
+        subprocess.run(['copy', r'[your_path]\extract\*.csv',
+                        r'[your_path]\transform'], shell=True)
 
 
 def _transform():
@@ -44,8 +44,8 @@ def _transform():
         #                 '../load/{}.csv'.format(news_site_uid)], cwd=TRFM)
         # WINDOWS
         subprocess.run(['del', dirty_data_filename], shell=True, cwd=TRFM)
-        subprocess.run(['copy', r'[your_root_path]\transform\*.csv',
-                        r'[your_root_path]\load'], shell=True)
+        subprocess.run(['copy', r'[your_path]\transform\*.csv',
+                        r'[your_path]\load'], shell=True)
 
 
 def _load():
@@ -61,7 +61,7 @@ def _load():
         # UNIX
         # subprocess.run(['rm', clean_data_filename], cwd='./load')
         # WINDOWS
-        # subprocess.run(['del', r'[your_root_path]\load\{}'.format(
+        # subprocess.run(['del', r'[your_path]\load\{}'.format(
         #     clean_data_filename)], shell=True, cwd='./load')
 
 
