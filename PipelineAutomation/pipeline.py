@@ -4,7 +4,8 @@ import datetime
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-news_sites_uids = ['eluniversal','elpais','eltiempo']
+news_sites_uids = ['eluniversal', 'elpais', 'eltiempo']
+
 MAIN = 'main.py'
 TRFM = './transform'
 

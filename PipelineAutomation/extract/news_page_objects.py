@@ -17,7 +17,9 @@ class NewsPage:
         return self._html.select(query_string)
 
     def _visit(self, url):
-        response = requests.get(url)
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0'}
+        response = requests.get(url, headers=headers)
 
         response.raise_for_status()
 
@@ -56,5 +58,3 @@ class ArticlePage(NewsPage):
     @property
     def url(self):
         return self._url
-
-
